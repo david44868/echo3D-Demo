@@ -32,7 +32,7 @@ export const AnimalQuestions = {
       question: "What eight-legged creature creates intricate webs to catch its prey?",
       choices: ["Bee", "Ant", "Moth", "Spider"],
       correctAnswer: "Spider",
-      fact: "Spider webs vary in size and design among different spider species, but they all serve the same purpose: to ensnare insects for the spider to feed on.",
+      fact: "Spider webs vary in size and design among different species, but serve the same purpose of ensnaring insects for the spider to feed on.",
       id: "3a87225f-4c18-47b0-a094-56f4c96018cf"
     }
   ]
@@ -72,7 +72,7 @@ export const PlanetQuestions = {
       question: "Which one of these planets was reclassified as a dwarf planet?",
       choices: ["Uranus", "Neptune", "Pluto", "Venus"],
       correctAnswer: "Pluto",
-      fact: "Pluto was called a dwarf planet because it's smaller than other planets and shares its space with lots of other small objects in its orbit.",
+      fact: "Pluto was a former planet that was renamed a dwarf planet in 2006.",
       id: "9d716495-317a-4568-a581-17bd9f34d4a2"
     }
   ]
@@ -112,7 +112,7 @@ export const RandomQuestions = {
       question: "Which one of these planets was reclassified as a dwarf planet?",
       choices: ["Uranus", "Neptune", "Pluto", "Venus"],
       correctAnswer: "Pluto",
-      fact: "Pluto was called a dwarf planet because it's smaller than other planets and shares its space with lots of other small objects in its orbit.",
+      fact: "Pluto was a former planet that was renamed a dwarf planet in 2006.",
       id: "9d716495-317a-4568-a581-17bd9f34d4a2"
     }
   ]

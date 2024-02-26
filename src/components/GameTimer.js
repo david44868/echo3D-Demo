@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
+const Timer = ({ quizEnded, secondsValue }) => {
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(true);
 
-  const stopTimer = () => {
-    setRunning(false);
-  }
-
   useEffect(() => {
     let interval;
-    if(running) {
+    if(!quizEnded) {
       interval = setInterval(() => {
         setSeconds(prevSeconds => prevSeconds + 1);
       }, 1000);
     }
-    else if (!running) {
+    else if (quizEnded) {
       clearInterval(interval);
+      secondsValue(seconds);
     }
     return () => clearInterval(interval);
   }, [seconds]);

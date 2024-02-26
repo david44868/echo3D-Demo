@@ -1,8 +1,12 @@
 import { AnimalQuestions, PlanetQuestions } from "../Questions/QuestionList";
 import React, { useState, useEffect } from "react";
 import { Dialog, Grow } from '@mui/material';
+import { Echo } from 'echo3d';
+import '@google/model-viewer';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
-export const SubjectQuiz = ({ subject, displayEnd }) => {
+export const SubjectQuiz = ({ subject, displayEnd, secondsValue }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answered, setAnswered] = useState(false);
@@ -14,16 +18,13 @@ export const SubjectQuiz = ({ subject, displayEnd }) => {
   const [openEndScreen, setOpenEndScreen] = useState(false);
   const [numCorrect, setNumCorrect] = useState(0);
 
-  const ECHO3D_KEY = process.env.REACT_APP_ECHO3D_API_KEY
+  const ECHO3D_KEY = process.env.REACT_APP_ECHO3D_API_KEY;
+  const ECHO3D_SECURITY_KEY = process.env.REACT_APP_ECHO3D_SECURITY_KEY;
   const questionSet = subject === "animals" ? AnimalQuestions : PlanetQuestions;
 
   const handleOpen = () => {
     setOpen(true);
   };
-
-  const handleOpenEndScreen = () => {
-    setOpenEndScreen(true);
-  }
 
   const handleClose = () => {
     setOpen(false);
@@ -47,7 +48,7 @@ export const SubjectQuiz = ({ subject, displayEnd }) => {
 
     // Display confetti when user finishes quiz
     if(currentIndex === questionSet.questions.length - 1) {
-      displayEnd()
+      displayEnd(true)
     }
   }
 
@@ -89,14 +90,29 @@ export const SubjectQuiz = ({ subject, displayEnd }) => {
           transitionDuration={500}
           className="pixel-corners"
         >
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              right: 20,
+              top: 15,
+              color: "black",
+            }}
+          >
+            <CloseIcon style={{ fontSize: 30 }}/>
+          </IconButton>
           <div className="pop-up">
             <h4 className={"font-face-pixel " + (displayAnswer ? "correct-response" : "incorrect-response")}>{displayAnswer ? "Correct" : "Incorrect"}</h4>
-            <iframe 
-              src={`https://api.echo3D.com/webar?key=${ECHO3D_KEY}&entry=${questionSet.questions[currentIndex].id}`}
-              title="echo3D iframe element"
-              height="225" 
-              width="225" 
-            />
+            
+            <div className="loading-image">
+              <Echo
+                securityKey={ECHO3D_SECURITY_KEY}
+                apiKey={ECHO3D_KEY}
+                entryID={questionSet.questions[currentIndex].id}
+                className="echo-model"
+              />
+            </div>
             <p className="font-face-pixel">
               {questionSet.questions[currentIndex].fact}
             </p>
@@ -109,10 +125,26 @@ export const SubjectQuiz = ({ subject, displayEnd }) => {
           className="pixel-corners"
         >
           <div className="pop-up">
-            <h3 className="font-face-pixel ending-style">CONGRATULATIONS!</h3>
-            <h2 className="font-face-pixel" style={{ color: "red" }}>FINAL SCORE</h2>
-            <h2 className="font-face-pixel" style={{ paddingBottom: "20px" }}>{ numCorrect } / 5</h2>
-            <img src="trophy.png" alt="Trophy" width={300} height={300} style={{ paddingBottom: "50px" }} />
+            {/* <h3 className="font-face-pixel ending-style">CONGRATULATIONS!</h3> */}
+            <h2 className="font-face-pixel" style={{ color: "red" }}>RESULTS</h2>
+            <div className="scores">
+              <h5 className="font-face-pixel">TIME...........{(secondsValue / 60) | 0}:{String(secondsValue % 60).padStart(2, '0')}</h5>
+              <h5 className="font-face-pixel">CORRECT.........{ numCorrect }/5</h5>
+              <h5 className="font-face-pixel">INCORRECT.......{ 5 - numCorrect }/5</h5>
+            </div>
+            <div className="scores">
+              <h5 className="font-face-pixel">TIME BONUS.....{4999 - secondsValue}</h5>
+              <h5 className="font-face-pixel">POINTS EARNED..{ String(numCorrect * 1000).padStart(4, '0') }</h5>
+              {(5 - numCorrect) * -1000 < 0 &&
+                <h5 className="font-face-pixel">PENALTY.......{ String((5 - numCorrect) * -1000).padStart(4, '0') }</h5>
+              }
+              {((4999 - secondsValue) + (numCorrect * 1000) + ((5 - numCorrect) * -1000)) > 0 ?
+                <h5 className="font-face-pixel"><span style={{ color:"rgb(255, 196, 4)"}}>FINAL SCORE</span>....{ String((4999 - secondsValue) + (numCorrect * 1000) + ((5 - numCorrect) * -1000)).padStart(4, '0') }</h5> : 
+                <h5 className="font-face-pixel">FINAL SCORE....0000</h5>
+              }
+              
+            </div>
+            <img src="trophy.png" alt="Trophy" width={300} height={300} style={{ paddingBottom: "40px" }} />
             <button className="end-button"><a href="/" className="font-face-pixel end-button">PLAY AGAIN</a></button>
           </div>          
         </Dialog>

@@ -5,17 +5,18 @@ import '@google/model-viewer';
 
 export default function Random() {
 
-  const ECHO3D_KEY = process.env.REACT_APP_ECHO3D_API_KEY
+  const ECHO3D_KEY = process.env.REACT_APP_ECHO3D_API_KEY;
+  const ECHO3D_SECURITY_KEY = process.env.REACT_APP_ECHO3D_SECURITY_KEY;
 
   return (
     <div className='homepage-image'>
       <div className='container'>
-        <Echo
+        <Echo style={{ height: "225px" }}
+          securityKey={ECHO3D_SECURITY_KEY}
           apiKey={ECHO3D_KEY}
-          entryID="c7c14b91-c362-4c28-b70b-2f800156c1eb"
+          entryID="3a3b8335-af13-4760-93ed-0d1009009c1a"
         />
       </div>
-       
     </div>
   );
 }

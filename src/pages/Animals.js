@@ -1,6 +1,5 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
-import '@google/model-viewer';
 import { SubjectQuiz } from '../components/Quiz';
 import ReactLoading from 'react-loading';
 import { useWindowSize } from 'react-use';
@@ -12,6 +11,8 @@ export default function Animals() {
   const [loading, setLoading] = useState(true);
   const { width, height } = useWindowSize()
   const [showConfetti, setShowConfetti] = useState(false);
+  const [quizEnded, setQuizEnded] = useState(false);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,9 +20,14 @@ export default function Animals() {
     }, 2000);
   }, [])
 
-  const displayEnd = () => {
-    setShowConfetti(true);
+  const displayEnd = (value) => {
+    setShowConfetti(value);
+    setQuizEnded(true);
   };
+
+  const handleSeconds = (value) => {
+    setSeconds(value);
+  }
 
   return (
     <div className='homepage-image'>
@@ -34,13 +40,9 @@ export default function Animals() {
           </div>
         ) : (
           <>
-            <Timer />
+            <Timer quizEnded={quizEnded} secondsValue={handleSeconds}/>
             <div className='quizbox'>
-              {/* <Echo
-                apiKey="square-dawn-8233"
-                entryID="Dolphin.glb"
-              /> */}
-              <SubjectQuiz subject="animals" displayEnd={displayEnd}/>
+              <SubjectQuiz subject="animals" displayEnd={displayEnd} secondsValue={seconds}/>
             </div>
           </>
           
