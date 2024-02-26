@@ -56,7 +56,7 @@ export default function Welcome() {
                       </div>
                     </a>  
                   </button>
-                  <button className='home'>
+                  {/* <button className='home'>
                     <a href="/random" className='home'>
                       <div className='waves'>
                         <span className='font-face-pixel' style={{"--i":1}}>R</span>
@@ -67,7 +67,7 @@ export default function Welcome() {
                         <span className='font-face-pixel' style={{"--i":6}}>M</span>
                       </div>
                     </a>
-                  </button>
+                  </button> */}
                   
                 </div>
               </>
