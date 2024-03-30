@@ -3,6 +3,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). <br>
 React demo with echo3D. A fun short quiz game that uses the echo3D API to show fun, interactive results.
 
+## Setup
+- Clone this github repo.
+- Make sure to have Node and NPM downloaded.
+- Run ```npm install``` to install all relevant packages and dependencies.
+- To start the project, then run ```npm start```
+
 ## Register
 Don't have an API key? Make sure to register for FREE at [echo3D](https://www.echo3d.com/).
 
@@ -34,5 +40,5 @@ Music composed by Bert Cole (bitbybitsound.com)
 Refer to echo3D's [documentation](https://docs.echo3d.com/web/installation) to learn more about how to use react with echo3D.
 
 ## Support
-Feel free to reach out at **support@echo3D.co** or [join our support channel on Slack](https://go.echo3d.co/join).
+Feel free to reach out at **support@echo3D.co** or [join echo3D's support channel on Slack](https://go.echo3d.co/join).
 
