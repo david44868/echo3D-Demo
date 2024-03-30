@@ -1,6 +1,6 @@
 # Interactive Quiz Game React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). <br>
 React demo with echo3D. A fun short quiz game that uses the echo3D API to show fun, interactive results.
 
 ## Sources used
