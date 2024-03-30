@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 React demo with echo3D. A fun short quiz game that uses the echo3D API to show fun, interactive results.
 
 ## Setup
-- Clone this github repository using the command ```git clone```
+- Clone this github repository using the command ```git clone https://github.com/david44868/echo3D-Demo.git```
 - Install Node and NPM if you haven't already
 - Run ```npm install``` to install all relevant packages and dependencies.
 - Create a .env file in the root directory of the project and add the following lines: <br>
