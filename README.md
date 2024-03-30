@@ -23,3 +23,16 @@ Don't have an API key? Make sure to register for FREE at [echo3D](https://www.ec
 Music composed by Bert Cole (bitbybitsound.com)
 - Journey Across The Blue
 - Merch City
+
+## Screenshots
+
+![Screenshot (264)](https://github.com/david44868/echo3D-Demo/assets/101820668/4e26cf2c-6380-4a87-81b9-2f2d64252bcb)
+![Screenshot (265)](https://github.com/david44868/echo3D-Demo/assets/101820668/07e45523-b5ad-4824-8f51-de0bb9bfb0d8)
+![Screenshot (266)](https://github.com/david44868/echo3D-Demo/assets/101820668/6f757f29-8896-4b7b-b736-5131ebfffcd1)
+
+## Learn More
+Refer to echo3D's [documentation](https://docs.echo3d.com/web/installation) to learn more about how to use react with echo3D.
+
+## Support
+Feel free to reach out at **support@echo3D.co** or [join our support channel on Slack](https://go.echo3d.co/join).
+
