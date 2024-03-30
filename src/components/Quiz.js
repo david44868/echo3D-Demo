@@ -5,6 +5,9 @@ import { Echo } from 'echo3d';
 import '@google/model-viewer';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import audio1 from '../audio/success.mp3';
+import audio2 from '../audio/failure.mp3';
+import audio3 from '../audio/results.wav';
 
 export const SubjectQuiz = ({ subject, displayEnd, secondsValue }) => {
 
@@ -17,10 +20,16 @@ export const SubjectQuiz = ({ subject, displayEnd, secondsValue }) => {
   const [open, setOpen] = useState(false);
   const [openEndScreen, setOpenEndScreen] = useState(false);
   const [numCorrect, setNumCorrect] = useState(0);
+  const questionSet = subject === "animals" ? AnimalQuestions : PlanetQuestions;
 
+  // In-Game Sounds
+  const correctNotification = new Audio(audio1);
+  const incorrectNotification = new Audio(audio2);
+  const resultsNotification = new Audio(audio3);
+  
+  // API Keys
   const ECHO3D_KEY = process.env.REACT_APP_ECHO3D_API_KEY;
   const ECHO3D_SECURITY_KEY = process.env.REACT_APP_ECHO3D_SECURITY_KEY;
-  const questionSet = subject === "animals" ? AnimalQuestions : PlanetQuestions;
 
   const handleOpen = () => {
     setOpen(true);
@@ -30,6 +39,7 @@ export const SubjectQuiz = ({ subject, displayEnd, secondsValue }) => {
     setOpen(false);
     if(currentIndex === questionSet.questions.length - 1) {
       setOpenEndScreen(true);
+      resultsNotification.play();
     }
   };
 
@@ -41,9 +51,11 @@ export const SubjectQuiz = ({ subject, displayEnd, secondsValue }) => {
     if(option === questionSet.questions[currentIndex].correctAnswer) {
       setDisplayAnswer(true);
       setNumCorrect(numCorrect + 1);
+      correctNotification.play();
     }
     else {
       setDisplayAnswer(false);
+      incorrectNotification.play();
     }
 
     // Display confetti when user finishes quiz
@@ -139,10 +151,10 @@ export const SubjectQuiz = ({ subject, displayEnd, secondsValue }) => {
                 <h5 className="font-face-pixel">PENALTY.......{ String((5 - numCorrect) * -1000).padStart(4, '0') }</h5>
               }
               {((4999 - secondsValue) + (numCorrect * 1000) + ((5 - numCorrect) * -1000)) > 0 ?
-                <h5 className="font-face-pixel"><span style={{ color:"rgb(255, 196, 4)"}}>FINAL SCORE</span>....{ String((4999 - secondsValue) + (numCorrect * 1000) + ((5 - numCorrect) * -1000)).padStart(4, '0') }</h5> : 
-                <h5 className="font-face-pixel">FINAL SCORE....0000</h5>
+                  <h5 className="font-face-pixel"><span style={{ color:"rgb(255, 196, 4)"}}>FINAL SCORE</span>....{ String((4999 - secondsValue) + (numCorrect * 1000) + ((5 - numCorrect) * -1000)).padStart(4, '0') }</h5> 
+                : 
+                  <h5 className="font-face-pixel">FINAL SCORE....0000</h5>
               }
-              
             </div>
             <img src="trophy.png" alt="Trophy" width={300} height={300} style={{ paddingBottom: "40px" }} />
             <button className="end-button"><a href="/" className="font-face-pixel end-button">PLAY AGAIN</a></button>

@@ -1,15 +1,44 @@
 import '../App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
+import audio1 from '../audio/Merch City.ogg';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import MusicOffIcon from '@mui/icons-material/MusicOff';
 
 export default function Welcome() {
 
   const [show, setShow] = useState(false);
   const [quizStart, setQuizStart] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false); 
+  const music = useRef(new Audio(audio1));
+
+  const toggleMusic = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  useEffect(() => {
+    const audio = music.current;
+    audio.loop = true;
+
+    if (isPlaying) {
+      audio.play().then(() => {
+      }).catch((error) => {
+        console.error('Error playing audio:', error);
+      });
+    } else {
+      audio.pause();
+    }
+
+    return () => {
+      audio.removeEventListener('ended', () => {}); 
+    };
+  }, [isPlaying]);
 
   return (
       <div className='homepage-image'>
+          <button className="music-button " onClick={toggleMusic}>
+            {isPlaying ? <MusicNoteIcon style={{ fontSize: 64 }}/> : <MusicOffIcon style={{ fontSize: 64 }}/>}
+          </button>
           <div className='container'>
-            
             {
               !show &&
               <>
