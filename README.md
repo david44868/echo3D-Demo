@@ -1,7 +1,7 @@
 # Interactive Quiz Game React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). <br>
-React demo with echo3D. A fun short quiz game that uses the echo3D API to show fun, interactive results.
+echo3D demo using React. A fun short quiz game that uses the echo3D API to show fun, interactive results.
 
 ## Setup
 - Clone this github repository using the command ```git clone https://github.com/david44868/echo3D-Demo.git```
@@ -9,7 +9,8 @@ React demo with echo3D. A fun short quiz game that uses the echo3D API to show f
 - Run ```npm install``` to install all relevant packages and dependencies.
 - Create a .env file in the root directory of the project and add the following lines: <br>
   ```REACT_APP_ECHO3D_API_KEY="insert-your-api-key-here"```<br>
-  ```REACT_APP_ECHO3D_SECURITY_KEY="insert-your-security-key-here"``` 
+  ```REACT_APP_ECHO3D_SECURITY_KEY="insert-your-security-key-here"```
+- Download and add the 3D models to your echo3D console
 - To start the project, then run ```npm start```
 
 ## Register
