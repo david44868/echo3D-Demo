@@ -11,6 +11,7 @@ echo3D demo using React. A fun short quiz game that uses the echo3D API to show 
   ```REACT_APP_ECHO3D_API_KEY="insert-your-api-key-here"```<br>
   ```REACT_APP_ECHO3D_SECURITY_KEY="insert-your-security-key-here"```
 - Download and add the 3D models to your echo3D console
+- In QuestionList.js, replace the ids with your asset ids that are assigned to the 3D models you added to the echo3D console 
 - To start the project, then run ```npm start```
 
 ## Register
